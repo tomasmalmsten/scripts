@@ -1,0 +1,22 @@
+#!/usr/local/bin/python
+
+import os
+
+commands = [
+    "mvn clean install -Pskip-tests -f mobill-service-platform/pom.xml",
+    "mvn clean install -f mobill-service-extensions/pom.xml",
+    "mvn clean install -f mobill-service-applications/pom.xml",
+    "mvn clean install -f mobill-acceptance-test/pom.xml",
+    "mvn clean install -f mobill-platform-build/pom.xml"]
+
+result = 0
+for command in commands:
+  print '********************************************************************************************'
+  print 'Executing ', command
+  result = os.system(command)
+  print 'Result is: ', result
+  if result is False:
+    print 'Build failed'
+    print '********************************************************************************************'
+    break
+  print '********************************************************************************************'
