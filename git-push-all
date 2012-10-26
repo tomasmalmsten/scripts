@@ -1,0 +1,14 @@
+#!/bin/bash
+dirs=`ls -rt`
+
+for d in $dirs
+do
+  if [[ $d == mobill-* ]]; then
+    echo "*******************************************"
+    echo "Will now push $d"
+    cd $d && git push && cd ..;
+    echo "*******************************************"
+    echo ""
+    echo ""
+  fi
+done
