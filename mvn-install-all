@@ -14,8 +14,7 @@ for command in commands:
   print '********************************************************************************************'
   print 'Executing ', command
   result = os.system(command)
-  print 'Result is: ', result
-  if result is False:
+  if result  <> 0:
     print 'Build failed'
     print '********************************************************************************************'
     break
