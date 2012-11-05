@@ -5,7 +5,7 @@ for d in $dirs
 do
   if [[ $d == mobill-* ]]; then
     echo "***************************************************************"
-    echo "Will now do a git pull on $d";
+    echo "Will now check status of project:  $d";
     cd $d && git status && cd ..;
     echo "***************************************************************"
     echo ""
