@@ -2,8 +2,17 @@
 
 import os
 
+print '***********************************************'
+print '******   Build Order                  *********'
+print '*******  mobill-service-platform      *********'
+print '*******  mobill-service-extensions    *********'
+print '*******  mobill-service-applications  *********'
+print '*******  mobill-acceptance-tests      *********'
+print '*******  mobill-platform-Build        *********'
+print '***********************************************'
+
 commands = [
-    "mvn clean install -Pskip-tests -f mobill-service-platform/pom.xml",
+    "Mvn clean install -Pskip-tests -f mobill-service-platform/pom.xml",
     "mvn clean install -f mobill-service-extensions/pom.xml",
     "mvn clean install -f mobill-service-applications/pom.xml",
     "mvn clean install -f mobill-acceptance-test/pom.xml",
