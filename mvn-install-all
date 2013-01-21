@@ -13,11 +13,11 @@ print '*******  mobill-karaf-distribution    *********'
 print '***********************************************'
 
 commands = [
-    "mvn clean install -f mobill-platform-build/pom.xml"
+    "mvn clean install -f mobill-platform-build/pom.xml",
     "mvn clean install -f mobill-service-platform/pom.xml",
     "mvn clean install -f mobill-service-applications/pom.xml",
     "mvn clean install -f mobill-service-extensions/pom.xml",
-    "mvn clean install -f mobill-karaf-distribution/pom.xml",
+    "mvn clean install -f mobill-karaf-distribution/pom.xml"
 #    "mvn clean install -f mobill-acceptance-test/pom.xml"
 ]
 
