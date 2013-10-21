@@ -1,0 +1,8 @@
+#!/bin/bash
+FILES=`find . -type f -iname '*Test.txt' -exec grep -l 'FAILURE!' {} +`
+if [ -z $FILES ]
+  then
+    cowsay "No failures, it seems..."
+  else
+    less $FILES #> /dev/null 2>&1 &
+fi
