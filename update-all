@@ -1,0 +1,25 @@
+#! /bin/sh
+
+echo "###############################################################################"
+echo "Will now attempt to update all repositories in `pwd`"
+echo "###############################################################################"
+files=`ls`
+
+for file in $files
+do
+  if [ -d $file ]
+  then
+    cd $file
+    if [ -e .svn ]
+    then
+      svn up
+    elif [ -e .git ]
+    then
+      git pull
+    fi
+  cd -
+  fi
+done
+echo "###############################################################################"
+echo "Done updating repositories in `pwd`"
+echo "###############################################################################"
