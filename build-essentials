@@ -81,6 +81,18 @@ if [ $? -ne 0 ]; then
   exit $?
 fi
 cd -
+cd portlets/liferay-ext
+echo "###############################################################################"
+echo "Building liferay-ext"
+echo "###############################################################################"
+mvn clean install
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  echo "Failed building liferay-ext!"
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
 cd portlets/build
 mvn clean package
 mvn integration-test

@@ -10,6 +10,7 @@ do
   if [ -d $file ]
   then
     cd $file
+    echo "Updating $file"
     if [ -e .svn ]
     then
       svn up
