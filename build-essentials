@@ -7,7 +7,7 @@ cd common
 echo "###############################################################################"
 echo "Building common"
 echo "###############################################################################"
-mvn clean install
+mvn -T 3C clean install
 if [ $? -ne 0 ]; then
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
   echo "Building common failed!"
@@ -20,7 +20,7 @@ cd central
 echo "###############################################################################"
 echo "Building central"
 echo "###############################################################################"
-mvn clean install
+mvn -T 1 clean install -Dmaven.test.skip=true
 if [ $? -ne 0 ]; then
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
   echo "Building central failed!"
@@ -29,7 +29,7 @@ if [ $? -ne 0 ]; then
 fi
 cd -
 cd central/build
-mvn clean package
+mvn -T 1 clean package
 if [ $? -ne 0 ]; then
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
   echo "Building central build failed!"
@@ -38,7 +38,7 @@ if [ $? -ne 0 ]; then
 fi
 cd -
 cd central/assembly
-mvn clean install
+mvn -T 1 clean install
 if [ $? -ne 0 ]; then
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
   echo "Building central assembly failed!"
@@ -51,7 +51,7 @@ cd local
 echo "###############################################################################"
 echo "Building local"
 echo "###############################################################################"
-mvn clean install
+mvn -T 1 clean install
 if [ $? -ne 0 ]; then
   echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
   echo "Building local failed!"
@@ -69,7 +69,7 @@ if [ $? -ne 0 ]; then
 fi
 cd -
 
-cd portlets
+cd portal
 echo "###############################################################################"
 echo "Building portal"
 echo "###############################################################################"
@@ -81,7 +81,7 @@ if [ $? -ne 0 ]; then
   exit $?
 fi
 cd -
-cd portlets/liferay-ext
+cd portal/liferay-ext
 echo "###############################################################################"
 echo "Building liferay-ext"
 echo "###############################################################################"
@@ -93,7 +93,7 @@ if [ $? -ne 0 ]; then
   exit $?
 fi
 cd -
-cd portlets/build
+cd portal/build
 mvn clean package
 mvn integration-test
 if [ $? -ne 0 ]; then
@@ -105,5 +105,20 @@ fi
 cd -
 
 echo "###############################################################################"
-echo "Done building all"
+echo "Done building all parts."
+echo "###############################################################################"
+
+echo "###############################################################################"
+echo "Will now attempt to run the functional tests."
+echo "###############################################################################"
+cd functional-tests
+mvn clean install
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  echo "Functional tests failed!"
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+echo "###############################################################################"
+echo "Functional tests worked!"
 echo "###############################################################################"
