@@ -1,0 +1,98 @@
+#! /usr/bin/zsh
+
+echo "********************************************"
+echo "************ Updating central **************"
+echo "********************************************"
+cd central
+git svn fetch
+git svn rebase git-svn
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
+
+echo "********************************************"
+echo "************ Updating common ***************"
+echo "********************************************"
+cd common
+git svn fetch
+git svn rebase git-svn
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
+
+echo "********************************************"
+echo "************** Updating eHub ***************"
+echo "********************************************"
+cd eHub
+git pull
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
+
+echo "********************************************"
+echo "******** Updating functional tests *********"
+echo "********************************************"
+cd functional-tests
+git svn fetch
+git svn rebase git-svn
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
+
+echo "********************************************"
+echo "************ Updating local ****************"
+echo "********************************************"
+cd local
+git svn fetch
+git svn rebase git-svn
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
+
+echo "********************************************"
+echo "*********** Updating mock-alma**************"
+echo "********************************************"
+cd mock-alma
+git svn fetch
+git svn rebase git-svn
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
+
+echo "********************************************"
+echo "************* Updating palma ***************"
+echo "********************************************"
+cd palma
+git svn fetch
+git svn rebase git-svn
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
+
+echo "********************************************"
+echo "************ Updating portal ***************"
+echo "********************************************"
+cd portal
+git svn fetch
+git svn rebase git-svn
+if [ $? -ne 0 ]; then
+  echo "!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!"
+  exit $?
+fi
+cd -
+
+echo "***************** Done! *******************"
